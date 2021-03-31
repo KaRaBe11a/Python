@@ -3,7 +3,6 @@ from raspil import rasp
 
 def MUL_Pxk_P(mnog, step):
     razrez = list(rasp(mnog))
-    print(razrez)
 
     for i in range(0, len(razrez)):  # идём по списку
         j = len(razrez[i]) - 1  # Всякие прикольные переменные
@@ -44,11 +43,3 @@ def MUL_Pxk_P(mnog, step):
         resStr = resStr + ("".join(razrez[i]))
     return resStr  # Поздравляю вы великолепны
 
-
-print("Введи многочлен")
-mnog = str(input())
-print("Введи степень x^")
-step = int(input())
-mnog = MUL_Pxk_P(mnog, step)
-print("Результат")
-print(mnog)

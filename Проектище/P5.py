@@ -53,12 +53,6 @@ def LED_P_Q(mnog):
     return stKoef  # готово
 
 
-print("Введи многочлен")
-mnog = str(input())
-stKoef = int(LED_P_Q(mnog))
-print("Результат")
-print(stKoef)
-
 
 
 

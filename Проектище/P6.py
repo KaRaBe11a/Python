@@ -7,7 +7,7 @@ def DEG_P_N(mnog):
     bufStr = str()
     for i in range(0, len(razrez)):  # Идём по всем членам
 
-        if (razrez[i].count(x) == 1):  # Если в члене есть x
+        if (razrez[i].count("x") == 1):  # Если в члене есть x
             j = len(razrez[i]) - 1
 
             if (razrez[i].count("^") == 1):  # Если x не в 1 степени
@@ -15,14 +15,13 @@ def DEG_P_N(mnog):
                     bufStr = bufStr + razrez[i][j]
                     j = j - 1
                 bufStr = bufStr[::-1]  # Переворачиваем
-                bufStr = bufStr + str(razrez[i][len(razrez[i]) - 1])  # Костыль закидываем в конец последний элемент
-                step = int(BufStr)  # Кидаем в инт
+                step = int(bufStr)  # Кидаем в инт
                 bufStr = ""
 
                 if (step > maxStep):  # Проверяем с максимальной степенью
                     maxStep = step
             else:  # Если x в 1 степени
-                if (maxSt < 1):
-                    maxSt = 1
-    return maxSt  # Если x ов нигде не было вернёт 0
+                if (maxStep < 1):
+                    maxStep = 1
+    return maxStep  # Если x ов нигде не было вернёт 0
 

@@ -15,12 +15,11 @@ def MUL_ZZ_Z(number1, number2): # принимает выражения вида
         num1 = ABS_Z_N(num1)
         countNegatives += 1
     if(POS_Z_D(num2) == 1):
+
         num2 = ABS_Z_N(num2)
         countNegatives += 1
-
     numResult = MUL_NN_N(num1, num2) #Перемножаем числа
     if(countNegatives == 1): # Если кол-во отрицательных = 1 то домнажаем число на -1
         numResult = MUL_ZM_Z(numResult)
     return numResult
-
 

@@ -35,10 +35,7 @@ def MUL_Nk_N (x, k):   # Умножение числ на 10^k
     return (x*10^k)
 
 def MUL_NN_N (x, y):    # Умножение натуральных чисел
-    x = ADD_NN_N (x, y)
-    y = MUL_ND_N (x, y)
-    z = MUL_Nk_N (x, y)
-    return (x*y*z)
+    return x*y
 
 def SUB_NDN_N (x, y, z):
     z = MUL_ND_N(z, y)    # Произведение z на y

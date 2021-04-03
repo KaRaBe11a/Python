@@ -1,4 +1,7 @@
 from raspil import rasp
+from Q7 import MUL_QQ_Q
+from Q6 import SUB_QQ_Q
+from SRAVN_Q import SRAVN_Q
 
 def DER_P_P(mnog: str):
     razrez = list(rasp((mnog)))
@@ -41,15 +44,15 @@ def DER_P_P(mnog: str):
                     buffKoef += "1"
 
                 if(buffKoef == "-"):
-                    buffKoef += "1"
+                    buffKoef += "-1"
 
                 j += 2
                 while(j<len(razrez[i])): # взяли степень
                     buffStep += razrez[i][j]
                     j += 1
 
-                buffKoef = str( int( int(buffKoef) * int(buffStep) ) ) # Расчитали новый коэф
-                buffStep = str( int( int(buffStep)-1 ) ) # расчитали новую степень
+                buffKoef = MUL_QQ_Q(buffKoef, buffStep)
+                buffStep = SUB_QQ_Q(buffStep, "1") # расчитали новую степень
 
                 buffZnak = razrez[i][0] #Запомнили что лежало в начале
                 razrez[i].clear()
@@ -59,10 +62,11 @@ def DER_P_P(mnog: str):
                 for k in range(0, len(buffKoef)): #Закидываем всё остальное
                     razrez[i].append(buffKoef[k])
 
-                if(int(buffStep) == 1): #Если степень стала 1
+                print(SRAVN_Q(buffStep, "1"))
+                if(SRAVN_Q(buffStep, "1") == 0): #Если степень стала 1
                     razrez[i].append("x")
 
-                if(int(buffStep) > 1): # Если степень стала > 1
+                if(SRAVN_Q(buffStep, "1") != 0): # Если степень стала > 1
                     razrez[i].append("x")
                     razrez[i].append("^")
                     for k in range(0, len(buffStep)):

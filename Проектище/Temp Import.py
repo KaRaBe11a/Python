@@ -2,7 +2,6 @@ from P4 import MUL_Pxk_P
 from P5 import LED_P_Q
 from P6 import DEG_P_N
 from P12 import DER_P_P
-import P6
 
 print("1 - Умножение на x^k")
 print("2 - Старший коэфициент многочлена")

@@ -2,7 +2,9 @@ def razbil_drob(drob:str):
 	i = 0
 	chisletel = ''
 	znamenatel = ''
+	drob = str(drob)
 	j = len(drob)
+
 	
 	while (i < j and drob[i] != '/'):
 		chisletel +=  drob[i]

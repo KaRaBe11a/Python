@@ -15,5 +15,7 @@ def SRAVN_Q(drob_1:str, drob_2:str):
     b = razbil_drob(drob_2)
     chisle1 = MUL_ZZ_Z(a[0], b[1])
     chisle2 = MUL_ZZ_Z(a[1], b[0])
+    countNegativ = 0
+
     result = COM_NN_D(int(chisle1), int(chisle2))
     return result # 2-первое больше 1-второе больше первого 0-равны

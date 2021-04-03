@@ -1,6 +1,6 @@
-from Z8 import MUL_ZZ_Z
-from drob import razbil_drob
-from Q3 import TRANS_Z_Q
+from Z8 import MUL_ZZ_Z # Умножение целых
+from drob import razbil_drob #разбитие дроби
+from Q3 import TRANS_Z_Q # перевод из x.xx в x/y
 def MUL_QQ_Q(drob_1:str, drob_2:str):
 	if(drob_1.count(".") == 1):
 		drob_1 = TRANS_Z_Q(drob_1)

@@ -24,7 +24,7 @@ def MUL_Pxk_P(mnog, step):
 
                 bufInt.reverse()  # Поскольку писали справа налево переварачиваем значени
                 bufStr = "".join(bufInt)  # Перекидываем из list в str
-                bufStr = ADD_QQ_Q(bufStr, str(step))
+                bufStr = ADD_QQ_Q(bufStr, str(step)) #Складываем степени
 
                 for k in range(0, j):  # закидываем в буферный list всё что было до "^"
                     bufRazr.append(razrez[i][k])

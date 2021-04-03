@@ -13,7 +13,7 @@ if(choice == 1):
     print("Введите многочлен аля x^2+x+1 ")
     mnog = str(input())
     print("Введите стпень на которую умножать x^ ")
-    step = int(input())
+    step = input()
     result = MUL_Pxk_P(mnog, step)
     print("Результат", result)
 if(choice == 2):

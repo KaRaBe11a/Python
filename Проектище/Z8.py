@@ -1,6 +1,6 @@
 from Z2 import POS_Z_D # Определение положительности числа 2+ 1- 0-0
 from Z1 import ABS_Z_N # Абсолютная величина числа
-from N1_10 import MUL_NN_N # Умножение натуральных чисел
+from N1_12 import MUL_NN_N # Умножение натуральных чисел
 from Z3 import MUL_ZM_Z # умножение целого на -1
 
 

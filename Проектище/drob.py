@@ -11,6 +11,8 @@ def razbil_drob(drob:str):
 	while (i < j):
 		znamenatel += drob[i]
 		i += 1
+	if(znamenatel == ""):
+		znamenatel += "1"
 	return chisletel, znamenatel
 
 

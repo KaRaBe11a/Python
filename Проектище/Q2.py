@@ -10,7 +10,8 @@ def INT_Q_B(drob: str):
 	while i < j:
 		delitel += drob[i]
 		i = i+1
-
+	if(delitel == ""):
+		delitel += "1"
 	if int(delimoe) % int(delitel) == 0 :
 		return 1
 	return 0

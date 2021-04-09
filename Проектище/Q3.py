@@ -1,3 +1,4 @@
+
 def TRANS_Z_Q(number: str):
     if(number.count(".") == 0): #Если число целое
         return number+"/1"
@@ -46,6 +47,6 @@ def TRANS_Z_Q(number: str):
     result += str(integerPart)+"/"+floatDelitel
     return result
 
-
+print(TRANS_Z_Q("10.0"))
 
 

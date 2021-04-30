@@ -111,11 +111,11 @@ def ADD_PP_P(mnog1: str, mnog2: str):
                 idX = bufStr.find("x") # находим номер x
                 koef = "".join(razrez2[i][:idX]) # записываем всё до него в коэф
 
-                if (koef == ""):# если коэф пустой логично что там что? правильно 1
+                if (koef == ""):# если коэф пустой значит коэф = 1
                     koef = "1"
-                elif (koef == "+"):# ну думаю тут логично
+                elif (koef == "+"): # если коэф + значит коэф = +1
                     koef = "+1"
-                elif (koef == "-"):
+                elif (koef == "-"):# если коэф - значит коэф = -1
                     koef = "-1"
                 koefsR2.append(koef)
         else: # если x нема
@@ -138,7 +138,7 @@ def ADD_PP_P(mnog1: str, mnog2: str):
                 min = str(steps[j])
                 idMin = j
 
-        koefs[i], koefs[idMin] = koefs[idMin], koefs[i] # ОООООО эти прекрасные кортежи кайф неописуемый
+        koefs[i], koefs[idMin] = koefs[idMin], koefs[i]
         steps[i], steps[idMin] = steps[idMin], steps[i]
 
     # А теперь всё это считаем и кидаем в результирующий массив
@@ -177,7 +177,7 @@ def ADD_PP_P(mnog1: str, mnog2: str):
             if steps[i] != "": # кидаем проверку есть ли тут какое то значение или уже пусто
                 resKoef = koefs[i]
 
-                if SRAVN_Q(steps[i], "1") == 0: # если степень 1 ну я надеюсь вы уже поняли
+                if SRAVN_Q(steps[i], "1") == 0: # Если степень 1 то и запишем коэф+x
                     resStr = resKoef+"x"
 
                 elif SRAVN_Q(steps[i], "0") == 0: # если степеень 0 ок
@@ -199,7 +199,7 @@ def ADD_PP_P(mnog1: str, mnog2: str):
 
     for i in range(1, len(result)): # ну и закидываем всё из массива в строку
         resultStr += " " + "".join(result[i])
-    return resultStr # РЕТУРН !!!!!!!!!!!!!!!!!!!!!!!!
+    return resultStr
 
 def SUB_PP_P(mnog1: str, mnog2: str):
     mnog2 = MUL_PQ_P(mnog2, "-1") # домнажаем второй многочлен на -1
@@ -254,7 +254,7 @@ def MUL_PQ_P(mnog: str, drob: str):
 
     # Сортируем массивы по степеням
     for i in range(len(steps)):
-        min = SUB_QQ_Q(steps[i], "1")  # так надо поверьте мне
+        min = SUB_QQ_Q(steps[i], "1")  # берём минимум = 1 степень -1
         idMin = 0
 
         for j in range(i, len(steps)):
@@ -262,7 +262,7 @@ def MUL_PQ_P(mnog: str, drob: str):
                 min = str(steps[j])
                 idMin = j
 
-        koefs[i], koefs[idMin] = koefs[idMin], koefs[i]  # ОООООО эти прекрасные кортежи кайф неописуемый
+        koefs[i], koefs[idMin] = koefs[idMin], koefs[i]
         steps[i], steps[idMin] = steps[idMin], steps[i]
 
     result = list()
@@ -299,7 +299,7 @@ def MUL_Pxk_P(mnog, step):
     razrez = list(rasp(mnog))
 
     for i in range(0, len(razrez)):  # идём по списку
-        j = len(razrez[i]) - 1  # Всякие прикольные переменные
+        j = len(razrez[i]) - 1
         bufInt = list()
         bufRazr = list()
         bufStr = str()
@@ -310,8 +310,8 @@ def MUL_Pxk_P(mnog, step):
             if (razrez[i].count("^") == 0):  # если x в первой степент
                 razrez[i].append("^")  # Закидываем туда знак степени
                 razrez[i].append(str(ADD_QQ_Q(str(step), "1")))  # Закидываем степень +1 т.к. у нас уже 1ая
-            else:  # Если x не в первой степени (Шо я написал я в ахуе)
-                while (razrez[i][j] != "^"):  # Короче идём справо налево и записываем какая у нас степень
+            else:
+                while (razrez[i][j] != "^"):  # идём справо налево и записываем какая у нас степень
                     bufInt.append(razrez[i][j])
                     j = j - 1
 
@@ -321,7 +321,7 @@ def MUL_Pxk_P(mnog, step):
 
                 for k in range(0, j):  # закидываем в буферный list всё что было до "^"
                     bufRazr.append(razrez[i][k])
-                bufRazr.append("^")  # добавляем знак "^" (Да я знаю что можно было это сделать красивее)
+                bufRazr.append("^")  # добавляем знак "^"
                 for k in range(0, len(bufStr)):  # в буферный list закидываем нашу степень
                     bufRazr.append(bufStr[k])
                 razrez[i].clear()  # очищаем основной list
@@ -334,7 +334,7 @@ def MUL_Pxk_P(mnog, step):
     resStr = str()  # итоговая строка
     for i in range(0, len(razrez)):  # из массива листов делаем 1 строку
         resStr = resStr + ("".join(razrez[i]))
-    return resStr  # Поздравляю вы великолепны
+    return resStr
 
 def LED_P_Q(mnog): #Старший коэф многочлена
     razrez = list(rasp(mnog))  # Распиливаем многочлен на отдельные члены

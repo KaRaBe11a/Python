@@ -4,7 +4,7 @@ from Q import SUB_QQ_Q
 from Q import MUL_QQ_Q
 from Q import TRANS_Z_Q
 from math import gcd
-from sympy import lcm
+from sympy import lcm, div
 from functools import reduce
 
 
@@ -699,3 +699,154 @@ def DER_P_P(mnog: str):
     for i in range(0, len(razrez)):
         resStr += ("".join((razrez[i])))
     return resStr
+
+def DIV_MOD_PP_P(mnog1 : str, mnog2: str):
+    razrez1 = rasp(mnog1)
+    razrez2 = rasp(mnog2)
+
+    new_mnog1 = str()
+    new_mnog2 = str()
+
+    buf_mnog1_koefs = list()
+    buf_mnog1_steps = list()
+
+    buf_mnog2_koefs = list()
+    buf_mnog2_steps = list()
+
+    bufKoef = str()
+    bufStep = str()
+    bufStr = str()
+    for i in range(len(razrez1)):
+
+        if razrez1[i].count("x") == 1:
+            if razrez1[i].count("^") == 1:
+
+                bufStr = "".join(razrez1[i])
+                idX = bufStr.find("x")
+                bufKoef = "".join(razrez1[i][:idX])
+                if bufKoef == "":
+                    bufKoef = "1"
+                if bufKoef == "+":
+                    bufKoef = "+1"
+                if bufKoef == "-":
+                    bufKoef = "-1"
+                bufStep = "".join(razrez1[i][idX+2:])
+                buf_mnog1_koefs.append(bufKoef)
+                buf_mnog1_steps.append(bufStep)
+
+            else:
+                bufStr = "".join(razrez1[i])
+                idX = bufStr.find("x")
+                bufKoef = "".join(razrez1[i][:idX])
+                if bufKoef == "":
+                    bufKoef = "1"
+                if bufKoef == "+":
+                    bufKoef = "+1"
+                if bufKoef == "-":
+                    bufKoef = "-1"
+                buf_mnog1_koefs.append(bufKoef)
+                buf_mnog1_steps.append("1")
+        else:
+            bufKoef = "".join(razrez1[i])
+            if bufKoef == "":
+                bufKoef = "1"
+            if bufKoef == "+":
+                bufKoef = "+1"
+            if bufKoef == "-":
+                bufKoef = "-1"
+            buf_mnog1_koefs.append(bufKoef)
+            buf_mnog1_steps.append("0")
+
+    for i in range(len(razrez2)):
+
+        if razrez2[i].count("x") == 1:
+            if razrez2[i].count("^") == 1:
+
+                bufStr = "".join(razrez2[i])
+                idX = bufStr.find("x")
+                bufKoef = "".join(razrez2[i][:idX])
+                if bufKoef == "":
+                    bufKoef = "1"
+                if bufKoef == "+":
+                    bufKoef = "+1"
+                if bufKoef == "-":
+                    bufKoef = "-1"
+                bufStep = "".join(razrez2[i][idX + 2:])
+                buf_mnog2_koefs.append(bufKoef)
+                buf_mnog2_steps.append(bufStep)
+
+            else:
+                bufStr = "".join(razrez2[i])
+                idX = bufStr.find("x")
+                bufKoef = "".join(razrez2[i][:idX])
+                if bufKoef == "":
+                    bufKoef = "1"
+                if bufKoef == "+":
+                    bufKoef = "+1"
+                if bufKoef == "-":
+                    bufKoef = "-1"
+                buf_mnog2_koefs.append(bufKoef)
+                buf_mnog2_steps.append("1")
+        else:
+            bufKoef = "".join(razrez2[i])
+            if bufKoef == "":
+                bufKoef = "1"
+            if bufKoef == "+":
+                bufKoef = "+1"
+            if bufKoef == "-":
+                bufKoef = "-1"
+            buf_mnog2_koefs.append(bufKoef)
+            buf_mnog2_steps.append("0")
+
+
+    for i in range(len(buf_mnog1_steps)):
+        new_mnog1 += "".join(buf_mnog1_koefs[i])
+        new_mnog1 += "*x**"
+        new_mnog1 += "".join(buf_mnog1_steps[i])
+
+    for i in range(len(buf_mnog2_steps)):
+        new_mnog2 += "".join(buf_mnog2_koefs[i])
+        new_mnog2 += "*x**"
+        new_mnog2 += "".join(buf_mnog2_steps[i])
+
+    q, r = div(new_mnog1, new_mnog2, domain = 'QQ')
+    q = str(q)
+    q = q.replace('**', '^')
+    q = q.replace('*', '')
+    q = q.replace(' ', '')
+
+    r = str(r)
+    r = r.replace('**', '^')
+    r = r.replace('*', '')
+    r = r.replace(' ', '')
+
+    return q, r
+
+
+def GCF_PP_P(mnog1, mnog2):
+    step1 = DEG_P_N(mnog1)
+    step2 = DEG_P_N(mnog2)
+    if step2 > step1:
+        mnog1, mnog2 = mnog2, mnog1
+        step1, step2 = step2, step1
+
+    while step2 != 0:
+        prev = mnog2
+        di, mo = DIV_MOD_PP_P(mnog1, mnog2)
+        mnog1, mnog2 = mnog2, mo
+        if mnog2 == "0":
+            break
+        step1, step2 = step2, DEG_P_N(mnog2)
+
+    return prev
+
+def NMR_P_P(mnog):
+    Proizv = DER_P_P(mnog)
+    NOD = GCF_PP_P(mnog, Proizv)
+    di, mo = DIV_MOD_PP_P(mnog, NOD)
+    res = di
+
+    return res
+
+
+print(NMR_P_P("x^3-5x^2+8x-4"))

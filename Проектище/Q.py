@@ -74,7 +74,10 @@ def TRANS_Z_Q(number: str):
 
     result = str()
     integerPart = int(int(integerPart)*int(floatDelitel))
-    integerPart = integerPart + int(floatPart)
+    try:
+        integerPart = integerPart + int(floatPart)
+    except:
+        integerPart = 0
     result += str(integerPart)+"/"+floatDelitel
     return result
 

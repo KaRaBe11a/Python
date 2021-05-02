@@ -682,7 +682,6 @@ def DER_P_P(mnog: str):
                 for k in range(0, len(buffKoef)): #Закидываем всё остальное
                     razrez[i].append(buffKoef[k])
 
-                print(SRAVN_Q(buffStep, "1"))
                 if(SRAVN_Q(buffStep, "1") == 0): #Если степень стала 1
                     razrez[i].append("x")
 
@@ -830,7 +829,7 @@ def GCF_PP_P(mnog1, mnog2):
         mnog1, mnog2 = mnog2, mnog1
         step1, step2 = step2, step1
 
-    while step2 != 0:
+    while step2 != 0 and step2 != "0":
         prev = mnog2
         di, mo = DIV_MOD_PP_P(mnog1, mnog2)
         mnog1, mnog2 = mnog2, mo
@@ -848,5 +847,3 @@ def NMR_P_P(mnog):
 
     return res
 
-
-print(NMR_P_P("x^3-5x^2+8x-4"))

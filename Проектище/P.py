@@ -847,3 +847,4 @@ def NMR_P_P(mnog):
 
     return res
 
+print(ADD_PP_P("x^100", "x^0"))

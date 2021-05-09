@@ -17,7 +17,8 @@ def COM_NN_D(number1: str, number2: str):  # Сравнение натураль
 
 def NZER_N_B(number: str):
     number = str(number)
-
+    if number.count("0") == len(number):
+        return "1"
     if len(number) != 1:
         return "0"
 
@@ -47,7 +48,8 @@ def ADD_1N_N(number: str):
 def ADD_NN_N(number1: str, number2: str):
     number1 = str(number1)
     number2 = str(number2)
-
+    number1 = number1.replace("+", "")
+    number2 = number2.replace("+", "")
     if len(number2) > len(number1):
         number1, number2 = number2, number1
 
@@ -130,6 +132,8 @@ def MUL_ND_N(number1: str, number2: str):
 
     if number2 == "0":
         return "0"
+    number1 = number1.replace("+", "")
+    number2 = number2.replace("+", "")
     number1 = str(number1)
     result = number1
     for i in range(0, int(number2)-1):
@@ -173,3 +177,133 @@ def SUB_NDN_N(number1: str, number2: str, number3: str):
     number1 = SUB_NN_N(number1, number2)
 
     return number1
+
+
+def DIV_NN_Dk(number1: str, number2: str):
+    number1 = str(number1)
+    number2 = str(number2)
+    result = ""
+    ost = ""
+    i = 0
+
+    if COM_NN_D(number1, number2) == "1":
+        return "ERROR"
+
+    if COM_NN_D(number1, number2) == "0":
+        return "1"
+
+    while i < len(number1):
+        tmp = ost + number1[i]
+        i += 1
+        while COM_NN_D(tmp, number2) == "1" and i < len(number1):
+            tmp += number1[i]
+            i += 1
+        count = "0"
+        while COM_NN_D(tmp, number2) != "1":
+            tmp = SUB_NN_N(tmp, number2)
+            count = ADD_1N_N(count)
+        result += str(count)
+
+    number = MUL_Nk_N(result[0], len(result)-1)
+    return number
+
+
+def DIV_NN_N(number1: str, number2: str):
+    number1 = str(number1)
+    number2 = str(number2)
+    result = ""
+    ost = ""
+    i = 0
+
+    if COM_NN_D(number1, number2) == "1":
+        return "ERROR"
+
+    if COM_NN_D(number1, number2) == "0":
+        return "1"
+
+    count = 0
+    while COM_NN_D(number1, number2) == "2":
+        number1 = SUB_NN_N(number1, number2)
+        count += 1
+    count += 1
+    return str(count)
+"""
+    while i < len(number1):
+        tmp = ""
+        if ost != '0':
+            tmp = ost
+
+        tmp += number1[i]
+        if number1[i] == "0" and number1[i] == tmp:
+            result += "0"
+            tmp = ""
+
+        i += 1
+
+        while COM_NN_D(tmp, number2) == "1" and i < len(number1):
+            tmp += number1[i]
+            if result != "":
+                result += "0"
+
+            i += 1
+
+        count = ""
+        if tmp != "0" and tmp != "":
+            while True:
+                if len(tmp) > 0:
+                        if tmp[0] == "0" and len(tmp) > 0:
+                            tmp = tmp[1:]
+                        else:
+                            break
+                else:
+                    break
+        if i == len(number1) and COM_NN_D(tmp, number2) == "1":
+            result += "0"
+            return result
+
+        while COM_NN_D(tmp, number2) != "1":
+            tmp = SUB_NN_N(tmp, number2)
+            count += "1"
+
+        ost = tmp
+        if len(count) != 0:
+            result += str(len(count))
+
+    return result
+"""
+
+
+
+def MOD_NN_N(number1: str, number2: str):
+    number1 = str(number1)
+    number2 = str(number2)
+    if number2 == "1":
+        return "0"
+
+    chastnoe = DIV_NN_N(number1, number2)
+    if chastnoe == "ERROR":
+        return chastnoe
+    return SUB_NN_N(number1, MUL_NN_N(chastnoe, number2))
+
+
+def GCF_NN_N(number1: str, number2: str):
+    number1 = number1.replace("-", "")
+    number2 = number2.replace("-", "")
+    if number1 == number2:
+        return "1"
+    elif number1 == "0":
+        return "1"
+    elif number2 == "0":
+        return "1"
+    while COM_NN_D(number1, number2) != "0":
+        if COM_NN_D(number1, number2) == "2":
+            number1 = SUB_NN_N(number1, number2)
+        else:
+            number2 = SUB_NN_N(number2, number1)
+    return number1
+
+
+def LCM_NN_N(number1: str, number2: str):
+    number1 = number1.replace("-", "")
+    number2 = number2.replace("-", "")
+    return DIV_NN_N(MUL_NN_N(number1, number2),GCF_NN_N(number1, number2))

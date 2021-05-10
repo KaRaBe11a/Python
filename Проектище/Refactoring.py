@@ -209,9 +209,11 @@ def DIV_NN_Dk(number1: str, number2: str):  # Вычисление первой 
 
 
 def DIV_NN_N(number1: str, number2: str):  # Частное от деления натурального на натуральное
-    print(number1, number2)
     number1 = str(number1)
     number2 = str(number2)
+    if number2 == "1":
+        return number1
+    cl = number1
     if COM_NN_D(number1, number2) == "1":
         return "ERROR"
     this_division = ""
@@ -235,11 +237,22 @@ def DIV_NN_N(number1: str, number2: str):  # Частное от деления 
         division_result += str(count)
         if this_division == "0":
             this_division = ""
+        f = 0
         for i in range(len(number1)):
+            if f == 1:
+                division_result += "0"
             this_division += number1[0]
             number1 = number1[1:]
+            f = 1
             if COM_NN_D(this_division, number2) != "1":
                 break
+    while COM_NN_D(division_result, cl) == "2":
+        division_result = division_result[:-1]
+
+    prov = MUL_NN_N(division_result, number2)
+    if len(prov) != len(cl):
+        division_result += "0"
+
     return division_result
 
 def MOD_NN_N(number1: str, number2: str):  # Остаток от делени натурального на натуральное

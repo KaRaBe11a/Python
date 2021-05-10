@@ -1,37 +1,16 @@
 from Refactoring import *
 from random import *
 
-number1 = "5811"
-number2 = "8"
+number1 = "802"
+number2 = "4"
+cl = number1
 number1 = str(number1)
 number2 = str(number2)
 this_division = ""
 division_result = ""
-while COM_NN_D(this_division, number2) == "1":
-    this_division += number1[0]
-    number1 = number1[1:]
-while COM_NN_D(this_division, number2) != "1":
 
-    try:
-        while this_division[0] == "0":
-            if this_division[0] == "0":
-                this_division = this_division[1:]
-                division_result += "0"
-    except:
-        print("")
-    count = 0
-    while COM_NN_D(this_division, number2) != "1":
-        this_division = SUB_NN_N(this_division, number2)
-        count += 1
-    division_result += str(count)
-    if this_division == "0":
-        this_division = ""
-    for i in range(len(number1)):
-        this_division += number1[0]
-        number1 = number1[1:]
-        if COM_NN_D(this_division, number2) != "1":
-            break
-print(division_result)
+
+print(DIV_NN_N(900, 2))
 
 print("Шо тестим?")
 print("1 - Сравнение натуральных чисел")

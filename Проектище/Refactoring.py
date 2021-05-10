@@ -143,9 +143,8 @@ def MUL_ND_N(number1: str, number2: str):  # Умножение натураль
 
 
 def MUL_Nk_N(number1: str, k: str):  # Умножение натурального на 10^k
-    k = str(k)
     number1 = str(number1)
-    number1 += (k*"0")  # припысаем к числу справа k нулей
+    number1 += (int(k)*"0")  # припысаем к числу справа k нулей
     return number1
 
 
@@ -223,10 +222,9 @@ def DIV_NN_N(number1: str, number2: str):  # Частное от деления 
         return "1"
 
     count = 0
-    while COM_NN_D(number1, number2) == "2":  # пока первое число больше второго
+    while COM_NN_D(number1, number2) != "1":  # пока первое число больше второго
         number1 = SUB_NN_N(number1, number2)  # вычитаем из первого второе
         count += 1  # Считаем сколько раз мы это сделали
-    count += 1  # Считали от нуля так что ещё +1
     return str(count)
 """
 Это были попытки сделать красиво но что-то пошло не по плану и я уже не понимаю что тут происходит
@@ -285,6 +283,8 @@ def MOD_NN_N(number1: str, number2: str):  # Остаток от делени н
     chastnoe = DIV_NN_N(number1, number2)  # берём частное от деления первого натурального на второе
     if chastnoe == "ERROR":  # Если произошла ошибка возвращаем её
         return chastnoe
+    print(number1, chastnoe, number2)
+    print(number1, MUL_NN_N(chastnoe, number2))
     return SUB_NN_N(number1, MUL_NN_N(chastnoe, number2))  # Если всё ок то вычитаем из первого числа произведение частного на второе число
 
 

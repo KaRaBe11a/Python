@@ -191,7 +191,7 @@ def btn_2():
 
 def btn_3():
 	def clc(ch:int):
-		qwe = [f3.RED_Q_Q, f3.INT_Q_B, f3.TRANS_Z_Q, f3.TRANS_Q_Z, 
+		qwe = [f3.RED_Q_Q, f3.INT_Q_B, f3.TRANS_Z_Q, f3.TRANZ_Q_Z,
 		f3.ADD_QQ_Q, f3.SUB_QQ_Q, f3.MUL_QQ_Q, f3.DIV_QQ_Q]
 		
 		a = Input.get()

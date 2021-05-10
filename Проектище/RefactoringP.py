@@ -5,6 +5,9 @@ from functools import reduce
 def rasp(polynomial):  # функция распила многочлена на отдельные члены возвращает list(list(str))
     if polynomial == "0":
         return "0"
+    if polynomial.count("x") == 0:
+        cut = list(polynomial)
+        return cut
     buf = list()
     cut = list()
     count = 0
@@ -251,6 +254,8 @@ def FAC_P_Q(polynomial1: str):  # НОК знаменателей коэфици
 
 
 def DIV_MOD_PP_P(polynomial1: str, polynomial2: str):  # Частное и остаток от деления многочленов
+    print("1")
+    print(polynomial1, polynomial2)
     division_result = ""
     coefficients1, steps1 = coefficients_and_steps(polynomial1)  # разбиваем многочлены на массивы коэфициентов и степеней
     coefficients2, steps2 = coefficients_and_steps(polynomial2)
@@ -277,6 +282,7 @@ def DIV_MOD_PP_P(polynomial1: str, polynomial2: str):  # Частное и ос�
         coefficients1, steps1 = coefficients_and_steps(polynomial1)  # Разбиваем на массив коэфициентов и степеней
         step_polynomial1 = DEG_P_N(polynomial1)  # Берём степень получившегося делимого
 
+    print(division_result)
     if division_result[0] == "+":  # Если в начале итога + то убираем его
         division_result = division_result[1:]
 

@@ -1,6 +1,38 @@
 from Refactoring import *
 from random import *
-print(MOD_NN_N(12, 4))
+
+number1 = "5811"
+number2 = "8"
+number1 = str(number1)
+number2 = str(number2)
+this_division = ""
+division_result = ""
+while COM_NN_D(this_division, number2) == "1":
+    this_division += number1[0]
+    number1 = number1[1:]
+while COM_NN_D(this_division, number2) != "1":
+
+    try:
+        while this_division[0] == "0":
+            if this_division[0] == "0":
+                this_division = this_division[1:]
+                division_result += "0"
+    except:
+        print("")
+    count = 0
+    while COM_NN_D(this_division, number2) != "1":
+        this_division = SUB_NN_N(this_division, number2)
+        count += 1
+    division_result += str(count)
+    if this_division == "0":
+        this_division = ""
+    for i in range(len(number1)):
+        this_division += number1[0]
+        number1 = number1[1:]
+        if COM_NN_D(this_division, number2) != "1":
+            break
+print(division_result)
+
 print("Шо тестим?")
 print("1 - Сравнение натуральных чисел")
 print("2 - Являеться ли число 0")
@@ -44,7 +76,7 @@ for i in range(ra):
     elif choice == 10:
         print(f"{number1} / {number2} = {DIV_NN_Dk(number1, number2)}")
     elif choice == 11:
-        print(f"{number1} / {number2} = {DIV_NN_N(number1, number2)} ")
+        print(f"{number1} / {number2} = {DIV_NN_N(number1, number2)}  А надо {number1 // number2}")
     elif choice == 12:
         print(f"ittaration {i}: {number1} % {number2} = {MOD_NN_N(number1, number2)} А надо {number1 % number2}")
     elif choice == 13:

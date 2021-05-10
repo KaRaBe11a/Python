@@ -3,12 +3,14 @@ from Refactoring import *
 
 def ABS_Z_N(number: str):  # Абсолютная величина числа
     number = str(number)
+    number = number.replace("+", "")
     number = number.replace("-", "")  # Убираем из строки -
     return number
 
 
 def POS_Z_D(number: str):  # Определение положительности числа
     number = str(number)
+    number = number.replace("+", "")
     if number.count("-") == 1:  # Если в строке есть - то оно отрицательное
         return "1"
     if number == "0":  # Если в числе содержиться только 0 то оно равно нулю
@@ -18,6 +20,7 @@ def POS_Z_D(number: str):  # Определение положительност
 
 def MUL_ZM_Z(number: str):  # Умножение целого на -1
     number = str(number)
+    number = number.replace("+", "")
     number = "-"+number  # приписываем слева
     number = number.replace("--", "")  # Если минуса 2 то онизаменяются на пустоту
     return number
@@ -36,6 +39,8 @@ def TRANS_Z_N(number: str):  # преобразование целого нео�
 def ADD_ZZ_Z(number1: str, number2: str):  # Сложение целых чисел
     number1 = str(number1)
     number2 = str(number2)
+    number1 = number1.replace("+", "")
+    number2 = number2.replace("+", "")
 
     if POS_Z_D(number1) == "1" and POS_Z_D(number2) == "1":  # Если оба числа <0
         number1 = ABS_Z_N(number1)  # Берём модуль от них
@@ -86,6 +91,8 @@ def ADD_ZZ_Z(number1: str, number2: str):  # Сложение целых чис�
 def SUB_ZZ_Z(number1, number2):  # Вычитание целых чисел
     number1 = str(number1)
     number2 = str(number2)
+    number1 = number1.replace("+", "")
+    number2 = number2.replace("+", "")
 
     number2 = MUL_ZM_Z(number2)  # домножаем второе на -1
     return ADD_ZZ_Z(number1, number2)  # Возвращаем их сумму
@@ -95,6 +102,9 @@ def MUL_ZZ_Z(number1: str, number2: str):  # Умножение целых чи�
     number1 = str(number1)
     number2 = str(number2)
     count_negatives = 0  # количество отрицательных чисел
+
+    number1 = number1.replace("+", "")
+    number2 = number2.replace("+", "")
 
     if number1 == "0" or number2 == "0":  # Если хоть одно = 0 то возвращаем 0
         return "0"
@@ -118,6 +128,8 @@ def MUL_ZZ_Z(number1: str, number2: str):  # Умножение целых чи�
 def DIV_ZZ_Z(number1: str, number2: str):  # Частное от деления целых чисел
     number1 = str(number1)
     number2 = str(number2)
+    number1 = number1.replace("+", "")
+    number2 = number2.replace("+", "")
     if number2 == "0":  # если делитель 0 возвращаем ошибку
         return "ERROR"
     if number1 == "0":  # Если делимое ноль возвращаем 0
@@ -145,6 +157,8 @@ def DIV_ZZ_Z(number1: str, number2: str):  # Частное от деления 
 def MOD_ZZ_Z(number1: str, number2: str):  # Остаток от деления целых
     number1 = str(number1)
     number2 = str(number2)
+    number1 = number1.replace("+", "")
+    number2 = number2.replace("+", "")
     if number1 == "0":  # Если делимое ноль возвращаем ноль
         return "0"
     if number2 == "0":  # Если делитель 0 то возвращаем ошибку

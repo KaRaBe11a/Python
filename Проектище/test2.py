@@ -1,9 +1,9 @@
 from tkinter import *
 from tkinter import messagebox
-import N as f1
-import P as f2
-import Q as f3
-import Z as f4
+import Refactoring as f1
+import RefactoringP as f2
+import RefactoringQ as f3
+import RefactoringZ as f4
 
 
 

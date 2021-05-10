@@ -79,7 +79,7 @@ def TRANZ_Q_Z(number: str):  # Преобразование дробного в 
         return number
     chislitel, znamen = razbil_drob(number)  # Разбиваем дробь
     if znamen == "1":  # Если знаменатель = 1 то возвращаем числитель
-        return number
+        return chislitel
 
 
 def TRANS_Z_Q(number: str):  # Преобразование целого в дробное

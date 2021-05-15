@@ -1,17 +1,6 @@
 from Refactoring import *
 from random import *
-
-number1 = "802"
-number2 = "4"
-cl = number1
-number1 = str(number1)
-number2 = str(number2)
-this_division = ""
-division_result = ""
-
-
-print(DIV_NN_N(900, 2))
-
+print(MOD_NN_N(12, 4))
 print("Шо тестим?")
 print("1 - Сравнение натуральных чисел")
 print("2 - Являеться ли число 0")
@@ -55,7 +44,7 @@ for i in range(ra):
     elif choice == 10:
         print(f"{number1} / {number2} = {DIV_NN_Dk(number1, number2)}")
     elif choice == 11:
-        print(f"{number1} / {number2} = {DIV_NN_N(number1, number2)}  А надо {number1 // number2}")
+        print(f"{number1} / {number2} = {DIV_NN_N(number1, number2)} ")
     elif choice == 12:
         print(f"ittaration {i}: {number1} % {number2} = {MOD_NN_N(number1, number2)} А надо {number1 % number2}")
     elif choice == 13:

@@ -211,49 +211,68 @@ def DIV_NN_Dk(number1: str, number2: str):  # Вычисление первой 
 def DIV_NN_N(number1: str, number2: str):  # Частное от деления натурального на натуральное
     number1 = str(number1)
     number2 = str(number2)
-    if number2 == "1":
-        return number1
-    cl = number1
-    if COM_NN_D(number1, number2) == "1":
+    result = ""
+    ost = ""
+    i = 0
+
+    if COM_NN_D(number1, number2) == "1":  # Если первое число меньше второго то возвращаем ошибку
         return "ERROR"
-    this_division = ""
-    division_result = ""
-    while COM_NN_D(this_division, number2) == "1":
-        this_division += number1[0]
-        number1 = number1[1:]
-    while COM_NN_D(this_division, number2) != "1":
 
-        try:
-            while this_division[0] == "0":
-                if this_division[0] == "0":
-                    this_division = this_division[1:]
-                    division_result += "0"
-        except:
-            print("")
-        count = 0
-        while COM_NN_D(this_division, number2) != "1":
-            this_division = SUB_NN_N(this_division, number2)
-            count += 1
-        division_result += str(count)
-        if this_division == "0":
-            this_division = ""
-        f = 0
-        for i in range(len(number1)):
-            if f == 1:
-                division_result += "0"
-            this_division += number1[0]
-            number1 = number1[1:]
-            f = 1
-            if COM_NN_D(this_division, number2) != "1":
-                break
-    while COM_NN_D(division_result, cl) == "2":
-        division_result = division_result[:-1]
+    if COM_NN_D(number1, number2) == "0":  # Если числа равны то возвращаем единицу
+        return "1"
 
-    prov = MUL_NN_N(division_result, number2)
-    if len(prov) != len(cl):
-        division_result += "0"
+    count = 0
+    while COM_NN_D(number1, number2) != "1":  # пока первое число больше второго
+        number1 = SUB_NN_N(number1, number2)  # вычитаем из первого второе
+        count += 1  # Считаем сколько раз мы это сделали
+    return str(count)
+"""
+Это были попытки сделать красиво но что-то пошло не по плану и я уже не понимаю что тут происходит
+    while i < len(number1):
+        tmp = ""
+        if ost != '0':
+            tmp = ost
 
-    return division_result
+        tmp += number1[i]
+        if number1[i] == "0" and number1[i] == tmp:
+            result += "0"
+            tmp = ""
+
+        i += 1
+
+        while COM_NN_D(tmp, number2) == "1" and i < len(number1):
+            tmp += number1[i]
+            if result != "":
+                result += "0"
+
+            i += 1
+
+        count = ""
+        if tmp != "0" and tmp != "":
+            while True:
+                if len(tmp) > 0:
+                        if tmp[0] == "0" and len(tmp) > 0:
+                            tmp = tmp[1:]
+                        else:
+                            break
+                else:
+                    break
+        if i == len(number1) and COM_NN_D(tmp, number2) == "1":
+            result += "0"
+            return result
+
+        while COM_NN_D(tmp, number2) != "1":
+            tmp = SUB_NN_N(tmp, number2)
+            count += "1"
+
+        ost = tmp
+        if len(count) != 0:
+            result += str(len(count))
+
+    return result
+"""
+
+
 
 def MOD_NN_N(number1: str, number2: str):  # Остаток от делени натурального на натуральное
     number1 = str(number1)

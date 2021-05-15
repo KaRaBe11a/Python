@@ -191,7 +191,7 @@ def btn_2():
 
 def btn_3():
 	def clc(ch:int):
-		qwe = [f3.RED_Q_Q, f3.INT_Q_B, f3.TRANS_Z_Q, f3.TRANZ_Q_Z,
+		qwe = [f3.RED_Q_Q, f3.INT_Q_B, f3.TRANS_Z_Q, f3.TRANZ_Q_Z, 
 		f3.ADD_QQ_Q, f3.SUB_QQ_Q, f3.MUL_QQ_Q, f3.DIV_QQ_Q]
 		
 		a = Input.get()
@@ -267,13 +267,25 @@ def btn_4():
 
 	def clc(ch:int):
 		qwe = [f2.ADD_PP_P, f2.SUB_PP_P, f2.MUL_PQ_P, f2.MUL_Pxk_P, f2.LED_P_Q, f2.DEG_P_N,
-		f2.FAC_P_Q, f2.MUL_PP_P,# f2.DIV_PP_P, f2.MOD_PP_P, f2.GCF_PP_P, 
-		f2.DER_P_P#, f2.NMR_P_P]
-		]
+		f2.FAC_P_Q, f2.MUL_PP_P, f2.DER_P_P, f2.DIV_MOD_PP_P,  f2.GCF_PP_P, f2.NMR_P_P]
+		
 		a = Input.get()
-		if (4 <= ch <= 6) or (ch == 8):
+		if (4 <= ch <= 5) or (ch == 8) or (ch == 11):
 			try:
 				info['text'] = f'{str(qwe[ch](str(a)))}'
+			except:
+				info['text'] = 'Error'
+		elif (ch == 9):
+			try:
+				zxc = razbil_ch(a)
+				t = qwe[ch](str(zxc[0]), str(zxc[1]))
+				info['text'] ='частное = ' + t[0] + ' остаток = ' + t[1]
+			except:
+				info['text'] = 'Error'
+		elif (ch == 6):
+			try:
+				t = str(qwe[ch](str(a)))
+				info['text'] = "НОД = " + t[1] + " НОК = " + t[4]
 			except:
 				info['text'] = 'Error'
 		else:
@@ -310,16 +322,14 @@ def btn_4():
 	activeforeground = 'black', command = lambda : clc(6)).grid(row=3, column=0, stick='wens', padx=15, pady=15)
 	b8 = Button(children, background = "#FF9914", text='Умножение многочленов', bd=15, width=40, height = 3, activebackground = '#FF7D00', 
 	activeforeground = 'black', command = lambda : clc(7)).grid(row=3, column=1, stick='wens', padx=15, pady=15)
-	b9 = Button(children, background = "#FF9914", text='Частное от деления многочлена на \nмногочлен при делении с остатком', bd=15, width=40, height = 3, activebackground = '#FF7D00', 
-	activeforeground = 'black', command = lambda : clc(11)).grid(row=3, column=2, stick='wens', padx=15, pady=15)
-	b10 = Button(children, background = "#FF9914", text='Остаток от деления многочлена на \nмногочлен при делении с остатком', bd=15, width=40, height = 3, activebackground = '#FF7D00', 
+	b10 = Button(children, background = "#FF9914", text='Остаток и частное от деления многочлена на \nмногочлен при делении с остатком', bd=15, width=40, height = 3, activebackground = '#FF7D00', 
 	activeforeground = 'black', command = lambda : clc(9)).grid(row=4, column=0, stick='wens', padx=15, pady=15)
 	b11 = Button(children, background = "#FF9914", text='НОД многочленов', bd=15, width=40, height = 3, activebackground = '#FF7D00', 
 	activeforeground = 'black', command = lambda : clc(10)).grid(row=4, column=1, stick='wens', padx=15, pady=15)
 	b12 = Button(children, background = "#FF9914", text='Производная многочлена', bd=15, width=40, height = 3, activebackground = '#FF7D00', 
-	activeforeground = 'black', command = lambda : clc(8)).grid(row=4, column=2, stick='wens', padx=15, pady=15)
+	activeforeground = 'black', command = lambda : clc(8)).grid(row=3, column=2, stick='wens', padx=15, pady=15)
 	b13 = Button(children, background = "#FF9914", text='Преобразование многочлена — \nкратные корни в простые', bd=15, width=40, height = 3, activebackground = '#FF7D00', 
-	activeforeground = 'black', command = lambda : clc(12)).grid(row=5, column=0, stick='wens', padx=15, pady=15)
+	activeforeground = 'black', command = lambda : clc(11)).grid(row=4, column=2, stick='wens', padx=15, pady=15)
 
 	close = Button(children, background = "#FF9914", text='Выход)', bd=15, width=40, height = 3, activebackground = '#FF7D00', 
 	activeforeground = '#6823E1', command=win.destroy).grid(row=5, column=2, padx=15, pady=15)

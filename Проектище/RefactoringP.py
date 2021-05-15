@@ -266,6 +266,8 @@ def DIV_MOD_PP_P(polynomial1: str, polynomial2: str):  # Частное и ос�
     # пока степенбь первого больше второго или они равны
     while SRAVN_Q(step_polynomial1, step_polynomial2) == "2" or SRAVN_Q(step_polynomial1, step_polynomial2) == "0":
         need_multiplier_step = SUB_QQ_Q(step_polynomial1, step_polynomial2)  # вычитаем степень делителя из степени делимого
+        if SRAVN_Q(coefficients1[0], coefficients2[0]) == "1":
+            polynomial1 = MUL_PQ_P(polynomial1, coefficients2[0])
         need_coefficient = DIV_QQ_Q(coefficients1[0], coefficients2[0])  # Берём частно от старших коэфициентов
         this_division = need_coefficient + "x^" + need_multiplier_step  # находим очередной член многочлена частного
         if this_division[0] != "-" and this_division[0] != "+":  # Если у него нет знака то добавляем его

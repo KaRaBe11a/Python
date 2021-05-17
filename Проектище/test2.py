@@ -267,9 +267,7 @@ def btn_4():
 
 	def clc(ch:int):
 		qwe = [f2.ADD_PP_P, f2.SUB_PP_P, f2.MUL_PQ_P, f2.MUL_Pxk_P, f2.LED_P_Q, f2.DEG_P_N,
-		f2.FAC_P_Q, f2.MUL_PP_P,# f2.DIV_PP_P, f2.MOD_PP_P, f2.GCF_PP_P, 
-		f2.DER_P_P#, f2.NMR_P_P]
-		]
+		f2.FAC_P_Q, f2.MUL_PP_P, f2.DER_P_P, f2.DIV_MOD_PP_P,  f2.GCF_PP_P, f2.NMR_P_P]
 		a = Input.get()
 		if (4 <= ch <= 6) or (ch == 8):
 			try:
